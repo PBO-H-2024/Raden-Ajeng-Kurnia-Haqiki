@@ -15,47 +15,31 @@ public class LimasSegitiga extends Segitiga implements BangunRuang{
     double tinggi;
     
     //constructor
-    public LimasSegitiga(double a, double t, double tl){
-        super(a, t);
+    public LimasSegitiga(double a, double b, double c, double tl){
+        super(a,b,c);
         this.tinggi = tl;
     }
     
     //method
-    public double SisiTegakA(){
-        return (super.getAlas() * tinggi)/2;
-    }
-    
-    public double SisiTegakB(){
-        return (super.getTinggi() * tinggi)/2;
-    }
-    
-    public double TO(){
-        //alas base segitiga sebagai hipotenusa
-        //setengah dari hipotenusa base segitiga sebagai alas
-        //mencari tinggi segitiga siku-siku
-        return Math.sqrt(Math.pow(super.getAlas(), 2) - Math.pow((super.Hipotenusa()/2), 2));
-    }
-    
-    public double TinggiSisiTegakC(){
-        //TO sebagai alas
-        //tinggi limas sebagai tinggi
-        //mencari hipotenusa segitiga siku-siku
-        return Math.sqrt((Math.pow(TO(), 2) + Math.pow(tinggi, 2)));
-    }
-    
-    public double SisiTegakC(){
-        return (super.Hipotenusa() * TinggiSisiTegakC())/2;
-    }
-    
+
     @Override
     public double Volume() {
-        return (super.Luas()*tinggi)/3;
+        return (super.Luas() * tinggi)/3;
     }
 
     @Override
     public double LuasPermukaan() {
-        return (super.Luas() + SisiTegakA() + SisiTegakB() + SisiTegakC());
+        //TO = Tinggi Limas (tengah base) sampai O (setengah sisi base)
+        //sh = tinggi sisi tegak (Slant Height)
+        
+        //Asumsikan tinggi sisi tegaknya sama semua
+        double t = Math.sqrt(Math.pow(super.getSisiB(), 2) - Math.pow((super.getSisiA()/2),2));
+        double sh = Math.hypot(tinggi, t/2);
+        double SisiTegakA = (super.getSisiA() * sh)/2;
+        double SisiTegakB = (super.getSisiB() * sh)/2;
+        double SisiTegakC = (super.getSisiC() * sh)/2;
+      
+        return (super.Luas() + SisiTegakA + SisiTegakB + SisiTegakC);
     }
-    
     
 }

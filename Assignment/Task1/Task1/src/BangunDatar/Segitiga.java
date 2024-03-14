@@ -10,45 +10,49 @@ package BangunDatar;
  */
 public class Segitiga implements BangunDatar{
     //attribute
-    private double alas, tinggi;
+    private double sisiA, sisiB, sisiC;
     
-    //constractor
-    public Segitiga(double a, double t){
-        this.alas = a;
-        this.tinggi = t;
+    //constructor
+    public Segitiga(double a, double b, double c){
+        this.sisiA = a;
+        this.sisiB = b;
+        this.sisiC = c;
     }
 
-    public double getAlas() {
-        return alas;
+    public double getSisiA() {
+        return sisiA;
     }
 
-    public double getTinggi() {
-        return tinggi;
+    public double getSisiB() {
+        return sisiB;
     }
 
-    public void setAlas(double alas) {
-        this.alas = alas;
+    public double getSisiC() {
+        return sisiC;
     }
 
-    public void setTinggi(double tinggi) {
-        this.tinggi = tinggi;
+    public void setSisiA(double sisiA) {
+        this.sisiA = sisiA;
     }
-    
-    
+
+    public void setSisiB(double sisiB) {
+        this.sisiB = sisiB;
+    }
+
+    public void setSisiC(double sisiC) {
+        this.sisiC = sisiC;
+    }
+        
     //method
-    public double Hipotenusa(){
-        return (Math.sqrt(Math.pow(alas, 2) + Math.pow(tinggi, 2)));
-    }
-
     @Override
     public double Keliling() {
-        return (alas + tinggi + Hipotenusa());
+        return sisiA + sisiB + sisiC;
     }
 
     @Override
     public double Luas() {
-        return (alas * tinggi)/2;
+        double tinggi = Math.sqrt(Math.pow(sisiB, 2) - Math.pow((sisiA/2),2)); 
+        return (sisiA * tinggi)/2;
     }
-    
     
 }
